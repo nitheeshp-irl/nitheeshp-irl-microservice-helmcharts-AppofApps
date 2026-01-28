@@ -14,7 +14,7 @@ spec:
         - values.yaml
   destination:
     server: 'arn:aws:eks:us-east-2:264988460735:cluster/argocd-poc'
-    namespace: 'voting'
+    namespace: 'craftista'
   syncPolicy:
     automated:
       prune: true
