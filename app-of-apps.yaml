@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/nitheeshp-irl/nitheeshp-irl-microservice-helmcharts-AppofApps
     targetRevision: HEAD
-    path: apps
+    path: apps/dev
   destination:
     server: 'arn:aws:eks:us-east-2:264988460735:cluster/argocd-poc'
     namespace: argocd

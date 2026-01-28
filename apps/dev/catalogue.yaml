@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: catalogue
+  namespace: argocd
+spec:
+  project: craftista
+  sources:
+    - repoURL: https://github.com/nitheeshp-irl/nitheeshp-irl-microservice-helmcharts-AppofApps
+      targetRevision: main
+      path: service-charts/catalogue
+      helm:
+        valueFiles:
+          - $values/envs/dev/catalogue.yaml
+    - repoURL: https://github.com/nitheeshp-irl/nitheeshp-irl-microservice-helmcharts-AppofApps
+      targetRevision: main
+      ref: values
+  destination:
+    server: 'arn:aws:eks:us-east-2:264988460735:cluster/argocd-poc'
+    namespace: 'craftista'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
