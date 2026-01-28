@@ -13,4 +13,8 @@ spec:
     server: 'arn:aws:eks:us-east-2:264988460735:cluster/argocd-poc'
     namespace: argocd
   syncPolicy:
-    automated: null
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
