@@ -7,6 +7,8 @@ spec:
   description: Project for Craftista microservices
   sourceRepos:
     - '*'
+  sourceNamespaces:
+    - argocd
   destinations:
     - namespace: '*'
       server: '*'
