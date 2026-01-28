@@ -1,16 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: craftista
+  name: craftista-app-of-apps
   namespace: argocd
 spec:
-  project: craftista
+  project: default
   source:
     repoURL: https://github.com/nitheeshp-irl/nitheeshp-irl-microservice-helmcharts-AppofApps
     targetRevision: HEAD
     path: apps
   destination:
-    server: https://7C0E0364DBF73CBBFA88A30E1DF0703E.gr7.us-east-2.eks.amazonaws.com
+    server: 'arn:aws:eks:us-east-2:264988460735:cluster/argocd-poc'
     namespace: argocd
   syncPolicy:
     automated: null
