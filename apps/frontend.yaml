@@ -4,7 +4,7 @@ metadata:
   name: frontend
   namespace: argocd
 spec:
-  project: default
+  project: craftista
   source:
     repoURL: https://github.com/nitheeshp-irl/nitheeshp-irl-microservice-helmcharts-AppofApps
     targetRevision: main
