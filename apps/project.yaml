@@ -8,7 +8,7 @@ spec:
   sourceRepos:
     - '*'
   sourceNamespaces:
-    - argocd
+    - '*'
   destinations:
     - namespace: '*'
       server: '*'
