@@ -6,8 +6,8 @@ image:
   pullPolicy: Always
 
 service:
-  type: NodePort
-  port: 30080
+  type: LoadBalancer
+  port: 80
 
 resources:
   limits:
