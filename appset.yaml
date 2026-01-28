@@ -1,0 +1,45 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: craftista-microservices
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - git:
+              repoURL: https://github.com/nitheeshp-irl/nitheeshp-irl-microservice-helmcharts-AppofApps
+              revision: HEAD
+              directories:
+                - path: envs/*
+          - list:
+              elements:
+                - service: frontend
+                - service: catalogue
+                - service: catalogue-db
+                - service: recommendation
+                - service: voting
+  template:
+    metadata:
+      name: '{{path.basename}}-{{service}}'
+    spec:
+      project: craftista
+      sources:
+        - repoURL: https://github.com/nitheeshp-irl/nitheeshp-irl-microservice-helmcharts-AppofApps
+          targetRevision: main
+          path: 'service-charts/{{service}}'
+          helm:
+            valueFiles:
+              - '$values/envs/{{path.basename}}/{{service}}.yaml'
+        - repoURL: https://github.com/nitheeshp-irl/nitheeshp-irl-microservice-helmcharts-AppofApps
+          targetRevision: main
+          ref: values
+      destination:
+        server: 'arn:aws:eks:us-east-2:264988460735:cluster/argocd-poc'
+        namespace: craftista
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
