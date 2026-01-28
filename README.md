@@ -58,4 +58,3 @@ To create a new environment (e.g., `production`):
 - **Fine-tuning**: Adjust `envs/<env>/<service>.yaml` for environment-specific tweaks (replicas, resource limits, etc.).
 
 ---
-*Built with ❤️ using Antigravity Agentic Coding.*
